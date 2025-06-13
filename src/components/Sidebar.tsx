@@ -22,10 +22,11 @@ const menuItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
+  const isCollapsed = state === 'collapsed';
 
   return (
-    <Sidebar className={`${collapsed ? 'w-14' : 'w-64'} bg-sidebar border-r border-sidebar-border`}>
+    <Sidebar className={`${isCollapsed ? 'w-14' : 'w-64'} bg-sidebar border-r border-sidebar-border`}>
       <SidebarContent>
         {/* Logo */}
         <div className="p-4 border-b border-sidebar-border">
@@ -33,7 +34,7 @@ export function AppSidebar() {
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">AH</span>
             </div>
-            {!collapsed && (
+            {!isCollapsed && (
               <div>
                 <h2 className="text-xl font-bold text-sidebar-foreground">AstanaHub</h2>
                 <p className="text-sm text-sidebar-foreground/60">Web3 Funding</p>
@@ -60,7 +61,7 @@ export function AppSidebar() {
                       }
                     >
                       <item.icon className="h-5 w-5" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -76,7 +77,7 @@ export function AppSidebar() {
               <SidebarMenuButton asChild>
                 <div className="flex items-center space-x-3 px-3 py-2 text-sidebar-foreground hover:bg-sidebar-accent/50 rounded-lg cursor-pointer">
                   <Wallet className="h-5 w-5" />
-                  {!collapsed && <span>Wallet</span>}
+                  {!isCollapsed && <span>Wallet</span>}
                 </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -84,7 +85,7 @@ export function AppSidebar() {
               <SidebarMenuButton asChild>
                 <div className="flex items-center space-x-3 px-3 py-2 text-sidebar-foreground hover:bg-sidebar-accent/50 rounded-lg cursor-pointer">
                   <Settings className="h-5 w-5" />
-                  {!collapsed && <span>Settings</span>}
+                  {!isCollapsed && <span>Settings</span>}
                 </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
